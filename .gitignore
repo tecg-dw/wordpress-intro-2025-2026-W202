@@ -7,3 +7,7 @@ wp-content/themes/*
 !wp-content/themes/dw
 !wp-content/themes/dw/*
 !wp-content/themes/dw/**/*
+wp-content/themes/dw/public/*
+!vite.config.js
+!package.json
+!postcss.config.js
