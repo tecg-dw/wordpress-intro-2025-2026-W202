@@ -1,0 +1,47 @@
+.cta {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding: 1.5rem;
+  background: linear-gradient(90deg, rgba(14, 60, 121, 1) 25%, rgba(14, 60, 121, 0) 100%);
+  border-radius: 1.5rem;
+
+  &__title {
+    font-size: 1.5rem;
+    color: white;
+    padding-bottom: 1rem;
+    max-width: 50%;
+  }
+
+  &__text {
+    font-size: 1rem;
+    color: white;
+    padding-bottom: 1.5rem;
+    max-width: 50%;
+  }
+
+  &__link {
+    max-width: 50%;
+    font-size: 1rem;
+    color: white;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background-color: #EA5C0C;
+    display: flex;
+    width: fit-content;
+    text-decoration: none;
+  }
+
+  &__image {
+    border-radius: 1.5rem;
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    object-fit: cover;
+  }
+}
