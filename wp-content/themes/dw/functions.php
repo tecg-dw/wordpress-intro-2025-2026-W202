@@ -46,3 +46,15 @@ function dw_asset(string $filename): string
   return '';
 }
 
+register_post_type('formation', [
+  'label' => 'Formations',
+  'description' => 'Les formations présentes sur mon site web',
+  'menu_position' => 2,
+  'menu_icon' => 'dashicons-welcome-learn-more',
+  'public' => true,
+  'has_archive' => true,
+  'supports' => ['title', 'excerpt', 'thumbnail'],
+  'rewrite' => [
+    'slug' => 'formations'
+  ],
+]);

@@ -1,6 +1,8 @@
 <?php if (have_posts()) : while (have_posts()): the_post(); ?>
+  <div>
     <?= get_the_title(); ?>
-    <?= get_the_content(); ?>
+    <?= get_the_excerpt(); ?>
+  </div>
 <?php endwhile; else: ?>
   <p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
 <?php endif; ?>
