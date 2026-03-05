@@ -10,3 +10,10 @@
   <script src="<?= dw_asset('js') ?>" defer></script>
 </head>
 <body>
+
+<h1 class="sro"><?= get_the_title() . ' - ' . get_bloginfo('name') ?></h1>
+
+<nav>
+  <h2 class="sro">Navigation principale</h2>
+  <?php wp_nav_menu(['theme_location' => 'header']); ?>
+</nav>

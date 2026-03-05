@@ -27,6 +27,10 @@ function init_remove_support(): void
   remove_post_type_support('product', 'editor');
 }
 
+register_nav_menu('header', 'Le menu qui se trouve dans le header');
+register_nav_menu('footer', 'Le menu qui se trouve dans le footer');
+register_nav_menu('social-media', 'Le menu qui regroupe nos réseaux sociaux');
+
 function dw_asset(string $filename): string
 {
   $manifest_path = get_theme_file_path('public/.vite/manifest.json');
