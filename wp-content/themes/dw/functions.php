@@ -90,3 +90,13 @@ register_post_type('formation', [
     'slug' => 'formations'
   ],
 ]);
+
+register_taxonomy('difficulty', 'formation', [
+  'hierarchical' => true,
+  'labels' => [
+    'name' => 'Le level des formations'
+  ],
+  'show_ui' => true,
+  'show_admin_column' => true,
+  'query_var' => true,
+]);

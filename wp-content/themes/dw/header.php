@@ -28,3 +28,4 @@
           'container' => false,
   ]); ?>
 </nav>
+<?php get_search_form(); ?>
