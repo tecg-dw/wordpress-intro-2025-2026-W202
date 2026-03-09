@@ -1,10 +1,11 @@
-<form role="search" method="get" class="search-form" action="<?= esc_url(home_url('/')); ?>">
+<form role="search" method="get" class="search-form" action="<?= esc_url(home_url('/')) ?>">
   <label>
-					<span class="screen-reader-text">
-					Search for:
+					<span class="sro">
+					<!-- translators: Hidden accessibility text. -->
+					<?= _x('Search for:', 'hepl-trad') ?>
 					</span>
-    <input class="searchform-input" type="search" placeholder="<?= esc_attr_x('Search &hellip;', 'placeholder') ?>"
+    <input type="search" class="search-field" placeholder="<?= esc_attr_x('Search &hellip;', 'placeholder') ?>"
            value="<?= get_search_query() ?>" name="s"/>
   </label>
-  <input class="custom-input-button" type="submit" value="<?= esc_attr_x('Search', 'submit button') ?>"/>
+  <button type="submit" class="search-submit"><?= esc_attr_x( 'Search', 'submit button' ) ?></button>
 </form>
