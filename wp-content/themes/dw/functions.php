@@ -6,7 +6,8 @@ register_nav_menu('header', 'Le menu qui se trouve dans le header');
 register_nav_menu('footer', 'Le menu qui se trouve dans le footer');
 register_nav_menu('social-media', 'Le menu qui regroupe nos réseaux sociaux');
 
-function dw_get_navigation_links(string $menu_name): array {
+function dw_get_navigation_links(string $menu_name): array
+{
   // Récupérer l'objet WP pour le menu à la location $location
   $all_menus = get_nav_menu_locations();
 
@@ -75,3 +76,57 @@ register_taxonomy('difficulty', 'formation', [
   'show_admin_column' => true,
   'query_var' => true,
 ]);
+
+add_action('admin_post_nopriv_hepl_contact_form', 'hepl_execute_contact_form');
+add_action('admin_post_hepl_contact_form', 'hepl_execute_contact_form');
+
+function hepl_execute_contact_form(): void
+{
+  $config = [
+    'nonce_field' => 'contact_nonce',
+    'nonce_identifier' => 'hepl_contact_form'
+  ];
+
+  (new ContactForm($config, $_POST))
+    ->sanitize([ // nettoyer les données
+      'name' => 'text_field', // Je lancerai sanitize_text_field()
+      'email' => 'email',  // Je lancerai sanitize_email()
+      'object' => 'text_field',  // Je lancerai sanitize_text_field()
+      'message' => 'textarea_field',  // Je lancerai sanitize_textarea_field()
+    ])
+    ->validate([ // valider les données
+      'name' => ['required'],
+      // Je définis la règle de validation required que j'exécuterai plus tard
+      'email' => ['required', 'email'],
+      // Je définis les règles de validation required et email que j'exécuterai plus tard
+      'object' => [],
+      //
+      'message' => ['required'],
+      // Je définis la règle de validation required que j'exécuterai plus tard
+    ])
+    ->save( // sauvegarder les données dans un CPT -> message de contact
+      title: fn($data) => $data['name'] . ' - ' . $data['email'] . ' - ' . $data['object'],
+      // John Doe - johndoe@example.com - Mon objet
+      content: fn($data) => $data['message'],
+    )
+    ->send( // J'envoie les données à mon administrateur du site
+      title: fn($data) => 'Nouveau message de ' . $data['name'], // John Doe - johndoe@example.com - Mon objet
+      content: fn($data
+      ) => 'Nom complet: ' . $data['name'] . PHP_EOL . 'Adresse mail: ' . $data['email'] . PHP_EOL . 'Objet: ' . $data['object'] . PHP_EOL . 'Message: ' . $data['message'],
+    )
+    ->feedback();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
