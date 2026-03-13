@@ -1,4 +1,11 @@
 <?php
+// Démarrer le système de sessions pour pouvoir afficher des messages de feedback
+if (session_status() === PHP_SESSION_NONE) {
+  session_start();
+}
+
+// Charger les fichiers des fonctionnalités extraites dans des classes.
+require_once(__DIR__ . '/core/controllers/ContactForm.php');
 
 include('core/theme/configuration.php');
 
@@ -67,6 +74,17 @@ register_post_type('formation', [
   ],
 ]);
 
+register_post_type('contact_message', [
+  'label' => 'Mes messages de contact',
+  'description' => 'Mes messages de contact',
+  'menu_position' => 3,
+  'menu_icon' => 'dashicons-welcome-learn-more',
+  'public' => false,
+  'show_ui' => true,
+  'has_archive' => false,
+  'supports' => ['title', 'editor'],
+]);
+
 register_taxonomy('difficulty', 'formation', [
   'hierarchical' => true,
   'labels' => [
@@ -97,7 +115,7 @@ function hepl_execute_contact_form(): void
     ->validate([ // valider les données
       'name' => ['required'],
       // Je définis la règle de validation required que j'exécuterai plus tard
-      'email' => ['required', 'email'],
+      'email' => ['email','required'],
       // Je définis les règles de validation required et email que j'exécuterai plus tard
       'object' => [],
       //
@@ -115,6 +133,29 @@ function hepl_execute_contact_form(): void
       ) => 'Nom complet: ' . $data['name'] . PHP_EOL . 'Adresse mail: ' . $data['email'] . PHP_EOL . 'Objet: ' . $data['object'] . PHP_EOL . 'Message: ' . $data['message'],
     )
     ->feedback();
+}
+
+function hepl_session_flash($key, $value): void
+{
+  if (!isset($_SESSION['hepl_flash'])) {
+    $_SESSION['hepl_flash'] = [];
+  }
+
+  $_SESSION['hepl_flash'][$key] = $value;
+}
+
+function hepl_session_get(string $key)
+{
+  if (isset($_SESSION['hepl_flash']) && array_key_exists($key, $_SESSION['hepl_flash'])) {
+    // 1. Récupérer la donnée qui a été flash
+    $value = $_SESSION['hepl_flash'][$key];
+    // 2. Supprimer la donnée de la session
+    unset($_SESSION['hepl_flash'][$key]);
+    // 3. Retourner ma donnée récupérée
+    return $value;
+  }
+
+  return null;
 }
 
 
