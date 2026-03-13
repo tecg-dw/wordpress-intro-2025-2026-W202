@@ -27,7 +27,6 @@ function init_remove_support(): void
   remove_post_type_support('product', 'editor');
 }
 
-
 /**
  * Désactive Posts (Articles) + Comments (Commentaires) dans l'admin
  * et bloque l'accès direct aux pages correspondantes.

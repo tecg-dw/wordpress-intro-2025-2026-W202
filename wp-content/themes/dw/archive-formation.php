@@ -1,24 +1,48 @@
+<?php
+// On récupère le paramètre filter dans l'URL, si il est présent
+$taxonomy = isset($_GET['filter']) ? sanitize_text_field($_GET['filter']) : '';
+
+// Je viens définir mon tableau d'arguments pour constituer ma QUERY
+$args = [
+        'post_type' => 'formation',
+];
+
+// Si la taxonomy n'est pas vide, je vais venir effectuer une requête en DB via tax_query pour filtrer en fonction de mon filter
+if ($taxonomy !== '') {
+  $args['tax_query'] = [
+          [
+                  'taxonomy' => 'difficulty',
+                  'field' => 'slug',
+                  'terms' => $taxonomy,
+          ]
+
+  ];
+}
+
+$formations = new WP_Query($args);
+?>
+
 <?php get_header(); ?>
 
 <div>
-  <a href="">
+  <a href="/formations/">
+    Tout
+  </a>
+
+  <a href="/formations/?filter=debutant">
     Débutant
   </a>
 
-  <a href="">
+  <a href="/formations/?filter=intermediaire">
     Intermédiaire
   </a>
 
-  <a href="">
+  <a href="/formations/?filter=expert">
     Expert
-  </a>
-
-  <a href="">
-    Débutant
   </a>
 </div>
 
-<?php if (have_posts()) : while (have_posts()): the_post(); ?>
+<?php if ($formations->have_posts()) : while ($formations->have_posts()): $formations->the_post(); ?>
   <div>
     <?= get_the_title(); ?>
     <?= get_the_excerpt(); ?>
