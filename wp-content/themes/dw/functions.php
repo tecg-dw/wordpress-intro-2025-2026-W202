@@ -115,7 +115,7 @@ function hepl_execute_contact_form(): void
     ->validate([ // valider les données
       'name' => ['required'],
       // Je définis la règle de validation required que j'exécuterai plus tard
-      'email' => ['email','required'],
+      'email' => ['email', 'required'],
       // Je définis les règles de validation required et email que j'exécuterai plus tard
       'object' => [],
       //
@@ -158,6 +158,14 @@ function hepl_session_get(string $key)
   return null;
 }
 
+//charger les traductions existantes
+load_theme_textdomain('hepl-trad', get_template_directory() . '/locales');
+
+// Fonction pour les chaînes de traduction personnalisées
+function __hepl(string $translation): ?string
+{
+  return __($translation, 'hepl-trad');
+}
 
 
 

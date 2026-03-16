@@ -30,7 +30,17 @@
         <a class="navigation__link" href="<?= $link->href ?>"><?= $link->label ?></a>
       </li>
     <?php endforeach; ?>
+    <?php foreach (pll_the_languages(['raw' => 1]) as $language => $link) : ?>
+      <li class="navigation__list-item-navigation">
+        <a class="navigation__link-navigation" href="<?= $link['url'] ?>"><?= strtoupper($language) ?></a>
+      </li>
+    <?php endforeach; ?>
     <?php get_search_form(); ?>
   </ul>
 </nav>
+
+<?php
+//pll_the_languages(['show_flags' => 1, 'show_names' => 0]);
+?>
+
 

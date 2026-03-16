@@ -1,0 +1,28 @@
+# Copyright (C) 2026 HEPL
+# This file is distributed under the same license as the Thème DW 202 theme.
+msgid ""
+msgstr ""
+"Project-Id-Version: Thème DW 202 1.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/dw\n"
+"POT-Creation-Date: 2026-03-16 10:02+0100\n"
+"PO-Revision-Date: 2026-03-16 10:03+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en_GB\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.9\n"
+"X-Domain: dw\n"
+"X-Poedit-KeywordsList: __hepl;__;_e\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: archive-formation.php:51 index.php:5 search.php:7
+#: templates/components/cards-formations/cards-formations.php:102
+msgid "Sorry, no posts matched your criteria."
+msgstr ""
+
+#: front-page.php:4
+msgid "Je suis un test en français"
+msgstr "Je suis un test en anglais"

@@ -7,6 +7,8 @@
 
 <?php get_template_part('templates/components/stage/stage'); ?>
 
+<?= do_shortcode('[contact-form-7 id="f5b1144" title="Contact form 1"]'); ?>
+
 <?php
 $feedback = hepl_session_get('hepl_contact_form_feedback') ?? false;
 $errors = hepl_session_get('hepl_contact_form_errors') ?? [];
@@ -59,7 +61,7 @@ $errors = hepl_session_get('hepl_contact_form_errors') ?? [];
     </div>
 
     <input type="hidden" name="action" value="hepl_contact_form"/>
-    <input type="hidden" name="contact_nonce" value="<?= wp_create_nonce('hepl_contact_form'); ?>" />
+    <input type="hidden" name="contact_nonce" value="<?= wp_create_nonce('hepl_contact_form'); ?>"/>
     <button type="submit">Soumettre le formulaire</button>
   </form>
 </section>
